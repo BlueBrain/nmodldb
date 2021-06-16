@@ -1,0 +1,33 @@
+
+./izh.c: ../izh.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) izh.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/168314/mod/x86_64")
+
+./izh.o: ./izh.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./pyr2pyr.c: ../pyr2pyr.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) pyr2pyr.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/168314/mod/x86_64")
+
+./pyr2pyr.o: ./pyr2pyr.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./synapse_inter2pyr.c: ../synapse_inter2pyr.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) synapse_inter2pyr.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/168314/mod/x86_64")
+
+./synapse_inter2pyr.o: ./synapse_inter2pyr.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./vecevent.c: ../vecevent.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) vecevent.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/168314/mod/x86_64")
+
+./vecevent.o: ./vecevent.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+

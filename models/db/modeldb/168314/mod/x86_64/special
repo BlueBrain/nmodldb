@@ -1,0 +1,17 @@
+#!/bin/sh
+if test "x${NRNHOME}" = "x" ; then
+    NRNHOME="/Users/awile/workbench/modldb/nmodldb/.tox/test-modeldb/lib/python3.9/site-packages/neuron/.data"
+fi
+if test "${NEURONHOME}" = "" ; then
+    NEURONHOME=${NRNHOME}/share/nrn
+    export NEURONHOME
+fi
+if test "x${NRNBIN}" = "x" ; then
+    NRNBIN="/Users/awile/workbench/modldb/nmodldb/.tox/test-modeldb/bin"
+fi
+if test "" = "yes" ; then
+    NRNIV="${NRNBIN}/nrniv.app/Contents/MacOS/nrniv"
+else
+    NRNIV="${NRNBIN}/nrniv"
+fi
+"${NRNIV}" -dll "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/168314/mod/x86_64/.libs/libnrnmech.so" "$@"

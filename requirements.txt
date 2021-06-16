@@ -1,0 +1,6 @@
+bs4
+wget
+pyyaml
+gitpython
+pep8
+pylint

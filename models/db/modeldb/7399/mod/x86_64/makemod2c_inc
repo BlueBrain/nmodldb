@@ -1,0 +1,97 @@
+
+./AMPA.c: ../AMPA.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) AMPA.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./AMPA.o: ./AMPA.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./GABAA.c: ../GABAA.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) GABAA.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./GABAA.o: ./GABAA.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./kdr.c: ../kdr.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) kdr.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./kdr.o: ./kdr.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./matrix.c: ../matrix.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) matrix.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./matrix.o: ./matrix.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./naf.c: ../naf.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) naf.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./naf.o: ./naf.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./passiv.c: ../passiv.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) passiv.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./passiv.o: ./passiv.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./precall.c: ../precall.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) precall.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./precall.o: ./precall.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./pregen.c: ../pregen.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) pregen.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./pregen.o: ./pregen.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./pregencv.c: ../pregencv.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) pregencv.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./pregencv.o: ./pregencv.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./pulsecv.c: ../pulsecv.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) pulsecv.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./pulsecv.o: ./pulsecv.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./sinstim.c: ../sinstim.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) sinstim.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./sinstim.o: ./sinstim.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./vecst.c: ../vecst.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) vecst.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/7399/mod/x86_64")
+
+./vecst.o: ./vecst.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+

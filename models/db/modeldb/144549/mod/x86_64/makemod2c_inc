@@ -1,0 +1,33 @@
+
+./invlfire.c: ../invlfire.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) invlfire.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/144549/mod/x86_64")
+
+./invlfire.o: ./invlfire.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./misc.c: ../misc.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) misc.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/144549/mod/x86_64")
+
+./misc.o: ./misc.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./stats.c: ../stats.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) stats.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/144549/mod/x86_64")
+
+./stats.o: ./stats.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./vecst.c: ../vecst.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) vecst.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/144549/mod/x86_64")
+
+./vecst.o: ./vecst.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+

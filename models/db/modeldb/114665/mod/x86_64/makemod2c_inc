@@ -1,0 +1,33 @@
+
+./kamt.c: ../kamt.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) kamt.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/114665/mod/x86_64")
+
+./kamt.o: ./kamt.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./kdrmt.c: ../kdrmt.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) kdrmt.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/114665/mod/x86_64")
+
+./kdrmt.o: ./kdrmt.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./naxn.c: ../naxn.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) naxn.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/114665/mod/x86_64")
+
+./naxn.o: ./naxn.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./nmdanetOB.c: ../nmdanetOB.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) nmdanetOB.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/114665/mod/x86_64")
+
+./nmdanetOB.o: ./nmdanetOB.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+

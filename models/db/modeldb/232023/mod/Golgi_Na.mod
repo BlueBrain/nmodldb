@@ -1,0 +1,159 @@
+TITLE Cerebellum Golgi Cell Model
+
+COMMENT
+        Na channel
+	Gutfreund parametrization
+
+	Author: E.DAngelo, T.Nieus, A. Fontana
+	Last revised: 8.5.2000
+---
+Adapted by Sungho Hong and Claus Lang
+Computational Neuroscience Unit, Okinawa Institute of Science and Technology, Japan
+Supervision: Erik De Schutter
+
+Correspondence: Sungho Hong (shhong@oist.jp)
+
+September 16, 2017
+ENDCOMMENT
+
+NEURON {
+	SUFFIX Golgi_Na
+	USEION na READ ena WRITE ina
+	RANGE Q10_diff,Q10_channel,gbar_Q10, fix_celsius
+	RANGE gbar, ina, g, ic
+	RANGE alpha_m, beta_m, alpha_h, beta_h
+	RANGE Aalpha_m, Kalpha_m, V0alpha_m
+	RANGE Abeta_m, Kbeta_m, V0beta_m
+
+	RANGE Aalpha_h, Kalpha_h, V0alpha_h
+	RANGE Abeta_h, Kbeta_h, V0beta_h
+
+	RANGE m_inf, tau_m, h_inf, tau_h, m, h, tcorr
+	RANGE Q10_channel_alp_m, Q10_channel_bet_m,Q10_channel_alp_h,Q10_channel_bet_h
+}
+
+UNITS {
+	(mA) = (milliamp)
+	(mV) = (millivolt)
+}
+
+PARAMETER {
+
+	Aalpha_m = 0.3 (/ms-mV)
+	Kalpha_m = -10 (mV)
+	V0alpha_m = -25 (mV)
+
+	Abeta_m = 12 (/ms)
+	Kbeta_m = -18.182 (mV)
+	V0beta_m = -50 (mV)
+
+	Aalpha_h  = 0.21 (/ms)
+	Kalpha_h  = -3.333 (mV)
+	V0alpha_h = -50 (mV)
+
+	Abeta_h  = 3 (/ms)
+	Kbeta_h  = -5 (mV)
+	V0beta_h = -17 (mV)
+
+	v (mV)
+	gbar	=  0.07 (mho/cm2) :0.07 0.083
+
+	ena (mV)
+    fix_celsius = 37 (degC)
+	Q10_diff	= 1.5
+	Q10_channel_alp_m	= 3
+	Q10_channel_bet_m	= 3
+	Q10_channel_alp_h	= 3
+	Q10_channel_bet_h	= 3
+}
+
+STATE {
+	m
+	h
+}
+
+ASSIGNED {
+	ina (mA/cm2)
+	m_inf
+	h_inf
+	tau_m (ms)
+	tau_h (ms)
+	g (mho/cm2)
+	alpha_m (/ms)
+	beta_m (/ms)
+	alpha_h (/ms)
+	beta_h (/ms)
+	tcorr	(1)
+	gbar_Q10 (mho/cm2)
+	ic
+}
+
+INITIAL {
+	gbar_Q10 = gbar*(Q10_diff^((fix_celsius-23)/10))
+	rate(v)
+	m = m_inf
+	h = h_inf
+}
+
+BREAKPOINT {
+	SOLVE states METHOD derivimplicit
+	g = gbar_Q10 * m*m*m*h
+	ina = g*(v - ena)
+	ic = ina
+:	alpha_m = alp_m(v)
+:	beta_m = bet_m(v)
+:	alpha_h = alp_h(v)
+:	beta_h = bet_h(v)
+}
+
+DERIVATIVE states {
+	rate(v)
+	m' =(m_inf - m)/tau_m
+	h' =(h_inf - h)/tau_h
+}
+
+FUNCTION alp_m(v(mV))(/ms) {
+	tcorr = Q10_channel_alp_m^((fix_celsius-20(degC))/10(degC))
+	alp_m = tcorr*Aalpha_m*linoid(v-V0alpha_m,Kalpha_m)
+}
+
+FUNCTION bet_m(v(mV))(/ms) {
+	tcorr = Q10_channel_bet_m^((fix_celsius-20(degC))/10(degC))
+	bet_m = tcorr*Abeta_m*exp((v-V0beta_m)/Kbeta_m)
+}
+
+FUNCTION alp_h(v(mV))(/ms) {
+	tcorr = Q10_channel_alp_h^((fix_celsius-20(degC))/10(degC))
+	alp_h = tcorr*Aalpha_h*exp((v-V0alpha_h)/Kalpha_h)
+}
+
+FUNCTION bet_h(v(mV))(/ms) {
+	tcorr = Q10_channel_bet_h^((fix_celsius-20(degC))/10(degC))
+	bet_h = tcorr*Abeta_h/(1+exp((v-V0beta_h)/Kbeta_h))
+}
+
+PROCEDURE rate(v (mV)) {LOCAL a_m, b_m, a_h, b_h
+	TABLE m_inf, tau_m, h_inf, tau_h
+	DEPEND Aalpha_m, Kalpha_m, V0alpha_m,
+	       Abeta_m, Kbeta_m, V0beta_m,
+               Aalpha_h, Kalpha_h, V0alpha_h,
+               Q10_channel_alp_m, Q10_channel_bet_m,Q10_channel_alp_h,Q10_channel_bet_h,
+	       Abeta_h, Kbeta_h, V0beta_h, fix_celsius FROM -100 TO 30 WITH 13000
+	a_m = alp_m(v)
+	b_m = bet_m(v)
+	a_h = alp_h(v)
+	b_h = bet_h(v)
+	m_inf = a_m/(a_m + b_m)
+	tau_m = 1/(a_m + b_m)
+	h_inf = a_h/(a_h + b_h)
+	tau_h = 1/(a_h + b_h)
+	:if (tau_h<0.1 (ms)) {tau_h=0.1 (ms)} : riga aggiunta il 10 giugno 2003
+}
+
+FUNCTION linoid(x (mV),y (mV)) (mV) {
+        if (fabs(x/y) < 1e-6) {
+                linoid = y*(1 - x/y/2)
+        }else{
+                linoid = x/(1 - exp(x/y))
+        }
+}

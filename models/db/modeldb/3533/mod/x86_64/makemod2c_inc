@@ -1,0 +1,9 @@
+
+./cat_thal.c: ../cat_thal.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) cat_thal.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/3533/mod/x86_64")
+
+./cat_thal.o: ./cat_thal.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+

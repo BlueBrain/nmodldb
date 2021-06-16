@@ -1,0 +1,25 @@
+
+./ca_a1g.c: ../ca_a1g.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) ca_a1g.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/19920/mod/x86_64")
+
+./ca_a1g.o: ./ca_a1g.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./ca_a1h.c: ../ca_a1h.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) ca_a1h.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/19920/mod/x86_64")
+
+./ca_a1h.o: ./ca_a1h.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
+./ca_a1i.c: ../ca_a1i.mod
+	@printf " -> $(C_GREEN)NMODL$(C_RESET) $<\n"
+	(cd ".."; MODLUNIT=$(NRNUNITS) $(NOCMODL) ca_a1i.mod -o "/Users/awile/workbench/modldb/nmodldb/models/db/modeldb/19920/mod/x86_64")
+
+./ca_a1i.o: ./ca_a1i.c
+	@printf " -> $(C_GREEN)Compiling$(C_RESET) $<\n"
+	$(COMPILE) -I".." $(INCLUDES) -fPIC -c $< -o $@
+
